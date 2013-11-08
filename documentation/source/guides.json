@@ -1,0 +1,9 @@
+[{
+  "title": "Daemon Manager",
+  "items": [{
+      "name": "overview",
+      "url": "overview",
+      "title": "Overview",
+      "description": "An overview of the daemon manager."
+    }]
+}]

@@ -1,0 +1,37 @@
+{
+  "name": "daemon-manager",
+  "version": "0.0.1",
+  "description": "Utility module that adds funcitonality to native node daemons.",
+  "main": "lib/manager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coreybutler/daemon-manager.git"
+  },
+  "keywords": [
+    "daemon",
+    "manager",
+    "wrapper",
+    "node-windows",
+    "node-mac",
+    "node-linux",
+    "background",
+    "process"
+  ],
+  "author": "Corey Butler <corey@coreybutler.com> (http://artofidea.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coreybutler/daemon-manager/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-jsduck": "~0.1.4",
+    "grunt-prompt": "~0.1.2",
+    "mocha": "~1.13.0",
+    "grunt-concat-in-order": "~0.1.6",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-clean": "~0.5.0"
+  }
+}
