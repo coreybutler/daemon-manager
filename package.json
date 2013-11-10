@@ -4,7 +4,7 @@
   "description": "Utility module that adds funcitonality to native node daemons.",
   "main": "lib/manager.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -29,9 +29,10 @@
     "grunt": "~0.4.1",
     "grunt-jsduck": "~0.1.4",
     "grunt-prompt": "~0.1.2",
-    "mocha": "~1.13.0",
+    "mocha": "~1.14.0",
     "grunt-concat-in-order": "~0.1.6",
     "grunt-contrib-uglify": "~0.2.5",
-    "grunt-contrib-clean": "~0.5.0"
+    "grunt-contrib-clean": "~0.5.0",
+    "assert": "~0.4.9"
   }
 }
