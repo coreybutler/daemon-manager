@@ -4,11 +4,20 @@ var manager = require('../'),
 
 suite('Sanity Tests', function(){
 
-  var controller;
+  var controller, e = function(){}, logger = {
+    info: e,
+    log: e,
+    warn: e,
+    error: e
+  };
 
   setup(function(){
     controller = new manager.Controller({
-      script: path.join(__dirname,'resources','app.js')
+      script: path.join(__dirname,'resources','app.js'),
+      env: {
+        TEST: 'This is a test.'
+      },
+      syslog: logger
     });
   });
   
@@ -44,17 +53,38 @@ suite('Sanity Tests', function(){
     controller.launch();
   });
   
+  test('Child Communication & Environment Variables',function(done){
+
+    this.timeout(3000);
+
+    // When the controller receives a response from the child process,
+    // we know communication works.
+    controller.on('message',function(data){
+      assert.ok(data == true,'The response data was invalid.');
+      done();
+    });
+    
+    // After the process starts, send it a message.
+    controller.on('start',function(){
+      controller.sendMessage('this is a test');
+    });
+    
+    controller.launch();
+    
+  });
+  
   test('Abort On Error',function(done){
     this.timeout(6000);
 
     controller.abortOnError = true;
-    
+
     assert.ok(controller.abortOnError == true,'The abort on error flag was not retained.');
     
     controller.on('aborted',function(){
       done();
     });
     
+    controller.launch();
+    
   });
-  
 });
