@@ -25,6 +25,9 @@
   "bugs": {
     "url": "https://github.com/coreybutler/daemon-manager/issues"
   },
+	"dependencies":{
+		"watch": "~0.8.0"
+	},
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-jsduck": "~0.1.4",

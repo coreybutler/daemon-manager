@@ -5,16 +5,23 @@ var manager = require('../'),
 suite('Sanity Tests', function(){
 
   // A generic logger to make the tests readable (i.e. not intermixed with output)
-  var controller, e = function(){}, logger = {
-    info: e,
-    log: e,
-    warn: e,
-    error: e
-  };
+  var controller,
+		msgq = [],
+    e = function(msg){
+			msgq.push(msg);
+		},
+		logger = new manager.Logger({
+			stripColors: true,
+			log: e,
+			info: e,
+			warn: e,
+			error: e
+		});
 
   setup(function(){
     controller = new manager.Controller({
       script: path.join(__dirname,'resources','app.js'),
+			restartOnScriptChange: true,
       env: {
         TEST: 'This is a test.'
       },
@@ -55,24 +62,28 @@ suite('Sanity Tests', function(){
   });
 
   test('Child Communication & Environment Variables',function(done){
-
-    this.timeout(3000);
-
+    this.timeout(10000);
     // When the controller receives a response from the child process,
     // we know communication works.
-    controller.on('message',function(data){
+    controller.on('childmessage',function(data){
       assert.ok(data == true,'The response data was invalid.');
       done();
     });
 
     // After the process starts, send it a message.
     controller.on('start',function(){
-      controller.sendMessage('this is a test');
+			controller.sendMessage('this is a test');
     });
 
     controller.launch();
 
   });
+	
+	/*test('Restart on script modification.',function(done){
+		
+		controller.on(
+		
+	});*/
 
   test('Abort On Error',function(done){
     this.timeout(6000);
@@ -83,6 +94,7 @@ suite('Sanity Tests', function(){
 
     controller.on('aborted',function(){
       done();
+			console.log('\n LOG:\n','------------------------------------\n',msgq);
     });
 
     controller.launch();
