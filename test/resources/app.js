@@ -11,6 +11,7 @@ console.log('Server running at http://127.0.0.1:1337/');
 // Handle messages sent from the wrapper
 process.on('message',function(data){
   process.send(process.env.hasOwnProperty('TEST'));
+	process.send('STOP');
 });
 
 // Force an error 2.5 seconds in.

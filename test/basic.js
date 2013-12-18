@@ -66,7 +66,7 @@ suite('Sanity Tests', function(){
     // When the controller receives a response from the child process,
     // we know communication works.
     controller.on('childmessage',function(data){
-      assert.ok(data == true,'The response data was invalid.');
+			assert.ok(data == true,'The response data was invalid.');
       done();
     });
 
@@ -78,12 +78,6 @@ suite('Sanity Tests', function(){
     controller.launch();
 
   });
-	
-	/*test('Restart on script modification.',function(done){
-		
-		controller.on(
-		
-	});*/
 
   test('Abort On Error',function(done){
     this.timeout(6000);
